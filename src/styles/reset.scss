@@ -1,0 +1,149 @@
+@charset "utf-8";
+header,
+footer,
+aside,
+nav,
+article,
+figure,
+figurcaption,
+section {
+	display: block;
+}
+
+html,
+body,
+div,
+span,
+object,
+section,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+}
+
+tbody {
+	float: none;
+}
+
+audio,
+canvas,
+video {
+	display: inline-block;
+}
+
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
+[hidden],
+template {
+	display: none;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+ol,
+ul {
+	list-style: none;
+	padding: 0px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+	text-decoration: none;
+	font-weight: 400;
+}
+
+*:not(input) {
+	user-select: none;
+}
+
+a {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
