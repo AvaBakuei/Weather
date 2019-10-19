@@ -5,13 +5,15 @@ import $ from "jquery";
 import "./Home.scss";
 
 const Home = () => {
-	const lastTemp = localStorage.getItem("temp");
+	const lastWeatherInfo = localStorage.getItem("weatherInfo");
 	const lastLat = localStorage.getItem("lat");
 	const lastLong = localStorage.getItem("long");
 
-	const [stateLat, setStateLat] = useState(lastLat);
-	const [stateLong, setStateLong] = useState(lastLong);
-	const [stateTemp, setStateTemp] = useState(lastTemp);
+	const [stateLat, setStateLat] = useState("");
+	const [stateLong, setStateLong] = useState("");
+	const [stateWeatherInfo, setStateWeatherInfo] = useState(
+		JSON.parse(lastWeatherInfo)
+	);
 
 	const handleChangeLat = e => {
 		setStateLat(e.target.value);
@@ -43,12 +45,22 @@ const Home = () => {
 		console.log(data.observations);
 		const location = data.observations.location;
 		location.forEach(element => {
-			const temp = element.observation;
-			temp.forEach(el => {
-				const temperature = el.temperature;
-				console.log("temperature = " + temperature);
-				setStateTemp(temperature);
-				localStorage.setItem("temp", temperature);
+			const observation = element.observation;
+			observation.forEach(el => {
+				const weatherInfo = {
+					city: el.city,
+					country: el.country,
+					state: el.state,
+					description: el.description,
+					temp: el.temperature,
+					icon: el.iconLink,
+				};
+
+				setStateWeatherInfo(weatherInfo);
+				localStorage.setItem(
+					"weatherInfo",
+					JSON.stringify(weatherInfo)
+				);
 			});
 		});
 
@@ -88,10 +100,28 @@ const Home = () => {
 				onChange={handleChangeLang}
 				placeholder="lang"
 			/>
-			<div>Lat: {stateLat || ""}</div>
-			<div>Lang: {stateLong || ""}</div>
-			<button onClick={handleClick}>Click</button>
-			<div>Temp: {stateTemp}</div>
+			<div>Lat: {stateLat || lastLat} </div>
+			<div>Long: {stateLong || lastLong}</div>
+			<button onClick={handleClick}>Submit</button>
+			<div>
+				Weather Info:
+				<div>city: {stateWeatherInfo ? stateWeatherInfo.city : ""}</div>
+				<div>
+					country: {stateWeatherInfo ? stateWeatherInfo.country : ""}
+				</div>
+				<div>
+					state: {stateWeatherInfo ? stateWeatherInfo.state : ""}
+				</div>
+				<div>
+					description:{" "}
+					{stateWeatherInfo ? stateWeatherInfo.description : ""}
+				</div>
+				<div>temp: {stateWeatherInfo ? stateWeatherInfo.temp : ""}</div>
+				<img
+					src={stateWeatherInfo ? stateWeatherInfo.icon : ""}
+					alt="icon"
+				/>
+			</div>
 		</div>
 	);
 };
