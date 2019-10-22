@@ -6,8 +6,6 @@ import "./Home.scss";
 
 const Home = () => {
 	const lastWeatherInfo = localStorage.getItem("weatherInfo");
-	const lastLat = localStorage.getItem("lat");
-	const lastLong = localStorage.getItem("long");
 
 	const [stateLat, setStateLat] = useState("");
 	const [stateLong, setStateLong] = useState("");
@@ -86,41 +84,78 @@ const Home = () => {
 	};
 
 	return (
-		<div>
-			<h1>Location</h1>
-			<input
-				type="text"
-				value={stateLat}
-				onChange={handleChangeLat}
-				placeholder="lat"
+		<div className="weather">
+			<img
+				className="weather__bg"
+				src={require("../../assets/images/bg.png")}
+				alt="background"
 			/>
-			<input
-				type="text"
-				value={stateLong}
-				onChange={handleChangeLang}
-				placeholder="lang"
-			/>
-			<div>Lat: {stateLat || lastLat} </div>
-			<div>Long: {stateLong || lastLong}</div>
-			<button onClick={handleClick}>Submit</button>
-			<div>
-				Weather Info:
-				<div>city: {stateWeatherInfo ? stateWeatherInfo.city : ""}</div>
-				<div>
-					country: {stateWeatherInfo ? stateWeatherInfo.country : ""}
+			<div className="weather-info">
+				<div className="weather-location">
+					<h1>Weather Info</h1>
+					<input
+						className="weather-location__input"
+						type="text"
+						value={stateLat}
+						onChange={handleChangeLat}
+						placeholder="lat"
+					/>
+					<input
+						className="weather-location__input"
+						type="text"
+						value={stateLong}
+						onChange={handleChangeLang}
+						placeholder="lang"
+					/>
+					<button
+						className="weather-location__btn"
+						onClick={handleClick}>
+						Submit
+					</button>
 				</div>
-				<div>
-					state: {stateWeatherInfo ? stateWeatherInfo.state : ""}
+				<div className="weather-observation">
+					{stateWeatherInfo ? (
+						<img src={stateWeatherInfo.icon} alt="icon" />
+					) : (
+						""
+					)}
+					{stateWeatherInfo ? (
+						<div>
+							City: <span>{stateWeatherInfo.city}</span>
+						</div>
+					) : (
+						""
+					)}
+					{stateWeatherInfo ? (
+						<div>
+							Country: <span>{stateWeatherInfo.country}</span>
+						</div>
+					) : (
+						""
+					)}
+					{stateWeatherInfo ? (
+						<div>
+							State: <span>{stateWeatherInfo.state}</span>
+						</div>
+					) : (
+						""
+					)}
+					{stateWeatherInfo ? (
+						<div>
+							Description:{" "}
+							<span>{stateWeatherInfo.description}</span>
+						</div>
+					) : (
+						""
+					)}
+					{stateWeatherInfo ? (
+						<div>
+							Temp: <span>{stateWeatherInfo.temp}</span>
+						</div>
+					) : (
+						""
+					)}
 				</div>
-				<div>
-					description:{" "}
-					{stateWeatherInfo ? stateWeatherInfo.description : ""}
-				</div>
-				<div>temp: {stateWeatherInfo ? stateWeatherInfo.temp : ""}</div>
-				<img
-					src={stateWeatherInfo ? stateWeatherInfo.icon : ""}
-					alt="icon"
-				/>
 			</div>
 		</div>
 	);

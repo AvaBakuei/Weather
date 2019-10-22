@@ -1,6 +1,12 @@
 @import "./config.scss";
-body {
-	font-family: iranyekan;
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+html {
 	overflow-x: hidden;
-	direction: rtl;
+}
+* {
+	font-family: "Roboto", sans-serif;
+	box-sizing: border-box;
+}
+body {
+	font-family: "Roboto", sans-serif;
 }
