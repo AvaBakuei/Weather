@@ -8,7 +8,7 @@ const Home = () => {
 	const lastWeatherInfo = localStorage.getItem("weatherInfo");
 
 	const [stateLat, setStateLat] = useState("");
-	const [stateLong, setStateLong] = useState("");
+	const [stateLng, setStateLng] = useState("");
 	const [stateWeatherInfo, setStateWeatherInfo] = useState(
 		JSON.parse(lastWeatherInfo)
 	);
@@ -17,7 +17,7 @@ const Home = () => {
 		setStateLat(e.target.value);
 	};
 	const handleChangeLang = e => {
-		setStateLong(e.target.value);
+		setStateLng(e.target.value);
 	};
 
 	const APP_ID = "U6Lh7y0gRKIcSjTlGUbS";
@@ -63,7 +63,7 @@ const Home = () => {
 		});
 
 		localStorage.setItem("lat", stateLat);
-		localStorage.setItem("long", stateLong);
+		localStorage.setItem("lng", stateLng);
 	};
 	const handleClick = () => {
 		$.ajax({
@@ -74,7 +74,7 @@ const Home = () => {
 			data: {
 				product: "observation",
 				latitude: stateLat,
-				longitude: stateLong,
+				longitude: stateLng,
 				oneobservation: "true",
 				app_id: APP_ID,
 				app_code: APP_CODE,
@@ -103,7 +103,7 @@ const Home = () => {
 					<input
 						className="weather-location__input"
 						type="text"
-						value={stateLong}
+						value={stateLng}
 						onChange={handleChangeLang}
 						placeholder="lang"
 					/>
